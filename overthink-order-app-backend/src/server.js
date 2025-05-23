@@ -1,6 +1,8 @@
 const app = require('./app');
 const sequelize = require('../config/db');
-const Customer = require('./modules/customers/model'); // This line is important for sequelize.sync() to know about the Customer model if it's not already loaded elsewhere.
+const User = require('./modules/users/model');
+const Customer = require('./modules/customers/model');
+const Order = require('./modules/orders/model');
 
 const PORT = process.env.PORT || 4000;
 

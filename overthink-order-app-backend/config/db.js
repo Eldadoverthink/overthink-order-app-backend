@@ -1,9 +1,14 @@
-// Placeholder for database connection settings
-// module.exports = {
-//   uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/overthink-order-app',
-//   options: {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   }
-// };
-console.log('Database configuration placeholder');
+const { Sequelize } = require('sequelize');
+
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASS,
+  {
+    host: process.env.DB_HOST,
+    dialect: 'postgres',
+    logging: false,
+  }
+);
+
+module.exports = sequelize;

@@ -1,7 +1,6 @@
-// Placeholder for HTTP server initialization
-// const app = require('./app');
-// const port = process.env.PORT || 3000;
-// app.listen(port, () => {
-//   console.log(`Server running on port ${port}`);
-// });
-console.log('HTTP server initialization placeholder');
+const app = require('./app');
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Overthink Order App - Simple API Dashboard</title>
+  <style>
+    body { font-family: sans-serif; margin: 2em; }
+    label { display: block; margin-top: 1em; }
+    input, select, textarea { width: 300px; }
+    button { margin-top: 1em; }
+    pre { background: #eee; padding: 1em; }
+  </style>
+</head>
+<body>
+  <h1>Overthink Order App API Dashboard</h1>
+  <h2>Test Customers API</h2>
+  <form id="customer-form">
+    <label>
+      Method:
+      <select id="method">
+        <option>GET</option>
+        <option>POST</option>
+      </select>
+    </label>
+    <label>
+      Customer ID (for GET by ID):
+      <input type="number" id="customerId" placeholder="Leave blank for all customers" />
+    </label>
+    <label>
+      Data (for POST as JSON):
+      <textarea id="customerData" rows="4" placeholder='{"companyName":"Test Co","contactName":"Jane","email":"jane@example.com"}'></textarea>
+    </label>
+    <button type="submit">Send Request</button>
+  </form>
+  <pre id="response"></pre>
+  <script>
+    document.getElementById('customer-form').onsubmit = async function(e) {
+      e.preventDefault();
+      const method = document.getElementById('method').value;
+      const customerId = document.getElementById('customerId').value;
+      const data = document.getElementById('customerData').value;
+      let url = '/api/customers';
+      if (method === 'GET' && customerId) url += '/' + customerId;
+      const opts = { method };
+      if (method === 'POST') {
+        opts.headers = { 'Content-Type': 'application/json' };
+        opts.body = data;
+      }
+      const res = await fetch(url, opts);
+      document.getElementById('response').textContent = await res.text();
+    };
+  </script>
+</body>
+</html>

@@ -4,6 +4,9 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 
+// Import user routes
+app.use('/api/users', require('./modules/users/routes')); 
+
 // Import customer routes
 app.use('/api/customers', require('./modules/customers/routes'));
 app.use('/api/orders', require('./modules/orders/routes'));
